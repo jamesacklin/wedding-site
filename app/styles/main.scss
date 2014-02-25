@@ -4,6 +4,8 @@
 @import "vars";
 @import "type";
 
+* { box-sizing: border-box; }
+
 body {
 	background: url(/images/border-top-sm.jpg) top center no-repeat $cream;
 	padding-top: 12em;
@@ -19,13 +21,29 @@ body {
 
 img { max-width: 100%; }
 
+a {
+	color: #0000FF;
+	text-decoration: none;
+	border-bottom: 1px dotted #0000FF;
+	&:hover {
+		border-bottom: 1px solid #0000FF;
+	}
+}
+
+.clearfix {
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+	&:after { clear: both; }
+}
+
 .container {
 	width: 90%;
 	margin: 0 auto;
 	min-width: 288px;
-	max-width: 1120px;
+	max-width: 800px;
 }
-
 
 header[role="banner"] {
 	display: none;
@@ -35,7 +53,6 @@ header[role="banner"] {
 	font-size: 16px;
 	display: block;
 	text-align: center;
-	max-width: 800px;
 	margin: 0 auto;
 	span {
 		font-family: "brandon-grotesque", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
@@ -57,22 +74,92 @@ header[role="banner"] {
 }
 
 section {
-	border-top: 1px solid $black;
-	margin-top: 2em;
+	@extend .clearfix;
+	padding: 3em 0;
+	margin: 0 auto;
+	@include breakpoint($medium){
+		text-align: center;
+	}
 	h2 {
+		padding: 0.15em 0;
+		margin: 2.5em auto;
 		text-align: center;
 		font-family: "hwt-slab-antique";
 		text-transform: uppercase;
 		font-weight: normal;
+		position: relative;
+		@include breakpoint($medium){ font-size: 2em; }
+		@include breakpoint($large){ font-size: 2.5em; }
+		&:before,
+		&:after {
+			content: "";
+			width: 200px; height: 40px;
+			position: absolute;
+			left: 50%;
+			margin-left: -100px;
+		}
+		&:before {
+			top: -40px;
+			background: url(../images/section-title-top.jpg) top center no-repeat;
+			background-size: 100% 100%;
+		}
+		&:after {
+			bottom: -40px;
+			background: url(../images/section-title-bottom.jpg) top center no-repeat;
+			background-size: 100% 100%;
+		}
+		sup { 
+			font-size: 66%;
+			position: relative;
+			top: -0.15em;
+			line-height: 1em;
+		}
+	}
+	.content { 
+		max-width: 700px;
+		margin: 0 auto;
 	}
 }
 
-.contact-us {
-	display: inline;
-	@include breakpoint($medium){ display: none; }
+address { font-size: 1.3em; }
+
+.direction {
+	span { 
+		display: block;
+		font-size: 0.8em;
+	}
+	@include breakpoint($medium){
+		text-align: left;
+		float: left;
+		width: 25%;
+		padding: 1%;
+	}
 }
 
-.contact-address {
+.hotel {
+	@include breakpoint($medium){
+		text-align: left;
+		float: left;
+		width: 33.3333%;
+		padding: 1%;
+	}
+}
+
+.disclaimer {
+	clear: both;
+	padding-top: 4em;
+	font-size: 0.8em;
+}
+
+.contact-us {
+	@include breakpoint($medium){
+		color: $black;
+		border-bottom: 0;
+		&:hover { border-bottom: 0; }
+	}
+}
+
+.contact-us-address {
 	display: none;
 	@include breakpoint($medium){ display: inline; }
 }
