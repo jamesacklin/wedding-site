@@ -38,6 +38,7 @@ header[role="banner"] {
 	max-width: 800px;
 	margin: 0 auto;
 	span {
+		font-family: "brandon-grotesque", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 		font-size: 12px;
 		display: block;
 		text-transform: uppercase;
@@ -53,4 +54,25 @@ header[role="banner"] {
 			margin-bottom: 2em;
 		}
 	}
+}
+
+section {
+	border-top: 1px solid $black;
+	margin-top: 2em;
+	h2 {
+		text-align: center;
+		font-family: "hwt-slab-antique";
+		text-transform: uppercase;
+		font-weight: normal;
+	}
+}
+
+.contact-us {
+	display: inline;
+	@include breakpoint($medium){ display: none; }
+}
+
+.contact-address {
+	display: none;
+	@include breakpoint($medium){ display: inline; }
 }
